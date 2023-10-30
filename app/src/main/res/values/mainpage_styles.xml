@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--  Text Section  -->
+    <style name="linearlayout_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">60dp</item>
+        <item name="android:layout_marginBottom">558dp</item>
+    </style>
+
+    <style name="text_section">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">@font/droid_sans</item>
+        <item name="android:text">@string/question_text</item>
+    </style>
+
+    <!--  Buttons Section  -->
+    <style name="linearlayout_buttons">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_marginTop">71dp</item>
+        <item name="android:layout_marginBottom">294dp</item>
+    </style>
+
+    <style name="quiz_option_button">
+        <item name="android:layout_width">340dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:backgroundTint">#fce5c5</item>
+        <item name="android:textColor">#F58B29</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+    </style>
+
+</resources>

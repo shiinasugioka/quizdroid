@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         style="@style/linearlayout_title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -14,13 +15,52 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/app_title"
             style="@style/app_title" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/app_title_ep"
             style="@style/app_title_ep" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        style="@style/linearlayout_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <TextView style="@style/text_section" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/linearlayout_buttons"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <Button
+            android:id="@+id/QuizOption1"
+            style="@style/quiz_option_button"
+            android:text="@string/quiz_option_1"
+            tools:layout_editor_absoluteX="156dp"
+            tools:layout_editor_absoluteY="280dp" />
+
+        <Button
+            android:id="@+id/QuizOption2"
+            style="@style/quiz_option_button"
+            android:text="@string/quiz_option_2"
+            tools:layout_editor_absoluteX="156dp"
+            tools:layout_editor_absoluteY="280dp" />
+
+        <Button
+            android:id="@+id/QuizOption3"
+            style="@style/quiz_option_button"
+            android:text="@string/quiz_option_3"
+            tools:layout_editor_absoluteX="156dp"
+            tools:layout_editor_absoluteY="280dp" />
 
     </LinearLayout>
 
