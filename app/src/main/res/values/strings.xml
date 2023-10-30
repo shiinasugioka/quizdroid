@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">quizdroid</string>
+
+    <!--  Title Section  -->
+    <string name="app_title">QuizDroid</string>
+    <string name="app_title_ep">!</string>
 </resources>
