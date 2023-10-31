@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearlayout_title"
         style="@style/linearlayout_title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,6 +22,54 @@
         <TextView
             android:id="@+id/app_title_ep"
             style="@style/app_title_ep" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_answers_text_content"
+        style="@style/linearlayout_questions_text_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearlayout_title">
+
+        <TextView
+            android:id="@+id/questions_question_number"
+            style="@style/questions_question_number"
+            android:text="Question Num"
+            tools:layout_editor_absoluteX="167dp"
+            tools:layout_editor_absoluteY="167dp" />
+
+        <TextView
+            android:id="@+id/questions_answers_description"
+            style="@style/questions_questions_description"
+            android:text="Your answer:" />
+
+        <TextView
+            android:id="@+id/questions_answers_display"
+            style="@style/questions_answers_display"
+            android:text="Ans Here" />
+
+        <TextView
+            android:id="@+id/questions_answers_correct"
+            style="@style/questions_answers_correct"
+            android:text="Correct!" />
+
+        <TextView
+            android:id="@+id/questions_answers_count_text"
+            style="@style/questions_answers_count_text"
+            android:text="You have some number of questions correct." />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_answers_next_button"
+        style="@style/linearlayout_answers_next_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/answers_next_button"
+            style="@style/questions_submit_button"
+            android:text="Next" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,42 +26,42 @@
 
     <LinearLayout
         android:id="@+id/linearlayout_questions_text_content"
+        style="@style/linearlayout_questions_text_content"
         app:layout_constraintBottom_toTopOf="@+id/linearlayout_questions_radio_buttons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearlayout_title"
-        style="@style/linearlayout_questions_text_content">
+        app:layout_constraintTop_toBottomOf="@+id/linearlayout_title">
 
         <TextView
             android:id="@+id/questions_question_number"
+            style="@style/questions_question_number"
             android:text="Question Num"
             tools:layout_editor_absoluteX="167dp"
-            tools:layout_editor_absoluteY="167dp"
-            style="@style/questions_question_number" />
+            tools:layout_editor_absoluteY="167dp" />
 
         <TextView
             android:id="@+id/questions_questions_description"
-            android:text="This is a really long sample question text to put on the screen."
-            style="@style/questions_questions_description" />
+            style="@style/questions_questions_description"
+            android:text="This is a really long sample question text to put on the screen." />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearlayout_questions_radio_buttons"
+        style="@style/linearlayout_questions_radio_buttons"
         app:layout_constraintBottom_toTopOf="@+id/linearlayout_questions_submit_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        style="@style/linearlayout_questions_radio_buttons">
+        app:layout_constraintStart_toStartOf="parent">
 
         <RadioGroup
             android:id="@+id/questions_radio_buttons_group"
+            style="@style/questions_radio_buttons_group"
             tools:layout_editor_absoluteX="200dp"
-            tools:layout_editor_absoluteY="397dp"
-            style="@style/questions_radio_buttons_group">
+            tools:layout_editor_absoluteY="397dp">
 
             <RadioButton
                 android:id="@+id/questions_first_radio_button"
-                android:text="answer here"
-                style="@style/questions_radio_button" />
+                style="@style/questions_radio_button"
+                android:text="answer here" />
 
             <RadioButton
                 android:id="@+id/questions_second_radio_button"
@@ -82,20 +82,20 @@
 
     <LinearLayout
         android:id="@+id/linearlayout_questions_submit_button"
+        style="@style/linearlayout_questions_submit_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        style="@style/linearlayout_questions_submit_button">
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/questions_back_button"
-            android:text="Back"
-            style="@style/questions_back_button" />
+            style="@style/questions_back_button"
+            android:text="Back" />
 
         <Button
             android:id="@+id/questions_submit_button"
-            android:text="Submit"
-            style="@style/questions_submit_button" />
+            style="@style/questions_submit_button"
+            android:text="Submit" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
