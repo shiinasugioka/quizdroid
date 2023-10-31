@@ -39,19 +39,30 @@
             tools:layout_editor_absoluteY="167dp" />
 
         <TextView
-            android:id="@+id/questions_answers_description"
-            style="@style/questions_questions_description"
+            android:id="@+id/answers_your_answer"
+            style="@style/answers_your_answer"
             android:text="Your answer:" />
 
         <TextView
-            android:id="@+id/questions_answers_display"
+            android:id="@+id/questions_user_answers_display"
             style="@style/questions_answers_display"
-            android:text="Ans Here" />
+            android:text="User Ans Here" />
 
         <TextView
-            android:id="@+id/questions_answers_correct"
-            style="@style/questions_answers_correct"
-            android:text="Correct!" />
+            android:id="@+id/questions_answers_validity"
+            style="@style/questions_answers_validity"
+            android:text="Incorrect" />
+
+        <TextView
+            android:id="@+id/questions_answers_answer_key_text"
+            style="@style/questions_answers_correct_text"
+            android:text="The correct answer was:" />
+
+        <TextView
+            android:id="@+id/questions_real_answers_display"
+            style="@style/questions_answers_display"
+            android:layout_marginBottom="30dp"
+            android:text="Real Ans Here" />
 
         <TextView
             android:id="@+id/questions_answers_count_text"
