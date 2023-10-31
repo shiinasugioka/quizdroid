@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "edu.uw.ischool.shiina12.quizdroid"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "edu.uw.ischool.shiina12.quizdroid"
         minSdk = 28
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 

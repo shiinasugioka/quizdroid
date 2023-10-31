@@ -3,7 +3,7 @@
     <!--  Title Section  -->
     <style name="linearlayout_title">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">95dp</item>
+        <item name="android:layout_height">120dp</item>
         <item name="android:layout_marginBottom">636dp</item>
         <item name="android:gravity">center</item>
     </style>

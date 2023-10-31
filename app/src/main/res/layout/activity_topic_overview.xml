@@ -10,8 +10,10 @@
         style="@style/linearlayout_title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/app_title"
@@ -23,49 +25,45 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="281dp">
+        android:id="@+id/linearlayout_overview_content"
+        style="@style/linearlayout_overview_content"
+        app:layout_constraintBottom_toTopOf="@+id/linearlayout_begin_quiz_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Welcome to the something Quiz"
-            tools:layout_editor_absoluteX="180dp"
-            tools:layout_editor_absoluteY="151dp" />
+            android:id="@+id/quiz_welcome_text"
+            style="@style/quiz_welcome_text"
+            android:text="Welcome to the something Quiz" />
 
         <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/quiz_description"
+            style="@style/quiz_description"
             android:text="The something quiz will be about"
             tools:layout_editor_absoluteX="178dp"
             tools:layout_editor_absoluteY="218dp" />
 
         <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/quiz_total_questions"
+            style="@style/quiz_total_questions"
             android:text="Total Questions:"
             tools:layout_editor_absoluteX="181dp"
             tools:layout_editor_absoluteY="283dp" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        tools:layout_editor_absoluteX="-38dp"
-        tools:layout_editor_absoluteY="584dp">
+        android:id="@+id/linearlayout_begin_quiz_button"
+        style="@style/linearlayout_begin_quiz_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearlayout_overview_content">
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/start_quiz_button"
+            style="@style/start_quiz_button"
             android:text="@string/begin_quiz_button"
             tools:layout_editor_absoluteX="162dp"
             tools:layout_editor_absoluteY="437dp" />
