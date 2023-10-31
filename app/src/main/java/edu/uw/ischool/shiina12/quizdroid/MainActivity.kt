@@ -3,8 +3,10 @@ package edu.uw.ischool.shiina12.quizdroid
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 
+private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +31,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startQuiz(selectedTopic: String) {
+        Log.i(TAG, "Button, $selectedTopic selected")
         val intent = Intent(this, TopicOverviewActivity::class.java)
+        Log.i(TAG, "intent created")
         intent.putExtra("topicName", selectedTopic)
+        Log.i(TAG, "topicName intent added")
         startActivity(intent)
+        Log.i(TAG, "activity started")
+
     }
 }
