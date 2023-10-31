@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearlayout_title"
         style="@style/linearlayout_title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,6 +22,80 @@
         <TextView
             android:id="@+id/app_title_ep"
             style="@style/app_title_ep" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_questions_text_content"
+        app:layout_constraintBottom_toTopOf="@+id/linearlayout_questions_radio_buttons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearlayout_title"
+        style="@style/linearlayout_questions_text_content">
+
+        <TextView
+            android:id="@+id/questions_question_number"
+            android:text="Question Num"
+            tools:layout_editor_absoluteX="167dp"
+            tools:layout_editor_absoluteY="167dp"
+            style="@style/questions_question_number" />
+
+        <TextView
+            android:id="@+id/questions_questions_description"
+            android:text="This is a really long sample question text to put on the screen."
+            style="@style/questions_questions_description" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_questions_radio_buttons"
+        app:layout_constraintBottom_toTopOf="@+id/linearlayout_questions_submit_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        style="@style/linearlayout_questions_radio_buttons">
+
+        <RadioGroup
+            android:id="@+id/questions_radio_buttons_group"
+            tools:layout_editor_absoluteX="200dp"
+            tools:layout_editor_absoluteY="397dp"
+            style="@style/questions_radio_buttons_group">
+
+            <RadioButton
+                android:id="@+id/questions_first_radio_button"
+                android:text="answer here"
+                style="@style/questions_radio_button" />
+
+            <RadioButton
+                android:id="@+id/questions_second_radio_button"
+                style="@style/questions_radio_button"
+                android:text="12 34 56 here" />
+
+            <RadioButton
+                android:id="@+id/questions_third_radio_button"
+                style="@style/questions_radio_button"
+                android:text="more answers here" />
+
+            <RadioButton
+                android:id="@+id/questions_fourth_radio_button"
+                style="@style/questions_radio_button"
+                android:text="answer here" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_questions_submit_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        style="@style/linearlayout_questions_submit_button">
+
+        <Button
+            android:id="@+id/questions_back_button"
+            android:text="Back"
+            style="@style/questions_back_button" />
+
+        <Button
+            android:id="@+id/questions_submit_button"
+            android:text="Submit"
+            style="@style/questions_submit_button" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

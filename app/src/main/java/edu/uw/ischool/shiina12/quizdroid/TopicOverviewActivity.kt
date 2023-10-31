@@ -25,10 +25,15 @@ class TopicOverviewActivity : AppCompatActivity() {
         Log.i(TAG, "welcome message: $welcomeMessage")
 
         try {
-            val inputStream: InputStream = assets.open("assets/quiz_data.json")
+            Log.i(TAG, "open input stream")
+            val inputStream: InputStream = assets.open("app/src/main/assets/quiz_data.json")
+            Log.i(TAG, "opened json")
             val jsonString = inputStream.bufferedReader().use { it.readText() }
+            Log.i(TAG, "bufferedReader")
             val jsonRoot = JSONObject(jsonString)
+            Log.i(TAG, "created jsonRoot")
             val topics = jsonRoot.getJSONArray("topics")
+            Log.i(TAG, "success")
 
             for (i in 0 until topics.length()) {
                 val topic = topics.getJSONObject(i)
@@ -42,8 +47,8 @@ class TopicOverviewActivity : AppCompatActivity() {
                 }
             }
 
-        } catch (e: Exception) {
-            e.printStackTrace()
+        } catch(e: Exception) {
+            Log.i(TAG, "catch: failed to read from json file")
         }
 
     }

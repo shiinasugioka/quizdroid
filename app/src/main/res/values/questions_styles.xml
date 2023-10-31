@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  Text Content  -->
+    <style name="linearlayout_questions_text_content">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:layout_marginBottom">33dp</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="questions_question_number">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">30dp</item>
+        <item name="android:fontFamily">@font/lilita_one</item>
+        <item name="android:paddingStart">25dp</item>
+        <item name="android:paddingEnd">50dp</item>
+        <item name="android:textColor">#00508A</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="questions_questions_description">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/droid_sans</item>
+        <item name="android:paddingStart">25dp</item>
+        <item name="android:paddingEnd">25dp</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <!--  Radio Buttons  -->
+    <style name="linearlayout_questions_radio_buttons">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">45dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="questions_radio_buttons_group">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="questions_radio_button">
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">46dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:background">#c2d2df</item>
+        <item name="android:fontFamily">@font/droid_sans</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">#00508A</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--  Back and Submit Buttons  -->
+    <style name="linearlayout_questions_submit_button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">131dp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingLeft">55dp</item>
+        <item name="android:paddingRight">55dp</item>
+    </style>
+
+    <style name="questions_back_button">
+        <item name="android:layout_width">140dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:backgroundTint">#fce5c5</item>
+        <item name="android:textColor">#FF9D43</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="questions_submit_button">
+        <item name="android:layout_width">140dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:backgroundTint">#fce5c5</item>
+        <item name="android:textColor">#FF9D43</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>
