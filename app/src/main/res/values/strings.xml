@@ -5,12 +5,12 @@
     <string name="app_title">QuizDroid</string>
     <string name="app_title_ep">!</string>
 
-    <!-- Text Section -->
+    <!-- Main Page -->
     <string name="question_text">What topic would you like to be quizzed on?</string>
-
-    <!--  Buttons Section  -->
     <string name="quiz_option_1">Math</string>
     <string name="quiz_option_2">Physics</string>
     <string name="quiz_option_3">Marvel Super Heroes</string>
 
+    <!--  Overview Page  -->
+    <string name="begin_quiz_button">Begin Quiz!</string>
 </resources>
