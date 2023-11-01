@@ -3,10 +3,12 @@ package edu.uw.ischool.shiina12.quizdroid
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+//import android.util.Log
 import android.widget.Button
 
-private const val TAG = "MainActivity"
+//private const val TAG = "MainActivity"
+private const val TOPIC_NAME = "topicName"
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,23 +19,23 @@ class MainActivity : AppCompatActivity() {
         val marvelButton = findViewById<Button>(R.id.QuizOption3)
 
         mathButton.setOnClickListener {
-            startQuiz("Math")
+            goToOverview("Math")
         }
 
         physicsButton.setOnClickListener {
-            startQuiz("Physics")
+            goToOverview("Physics")
         }
 
         marvelButton.setOnClickListener {
-            startQuiz("Marvel Super Heroes")
+            goToOverview("Marvel Super Heroes")
         }
 
     }
 
-    private fun startQuiz(selectedTopic: String) {
-        Log.i(TAG, "Button, $selectedTopic selected")
+    private fun goToOverview(selectedTopic: String) {
+//        Log.i(TAG, "Button, $selectedTopic selected")
         val intent = Intent(this, TopicOverviewActivity::class.java)
-        intent.putExtra("topicName", selectedTopic)
+        intent.putExtra(TOPIC_NAME, selectedTopic)
         startActivity(intent)
 
     }
