@@ -1,6 +1,7 @@
 package edu.uw.ischool.shiina12.quizdroid
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -25,21 +26,22 @@ class AnswerActivity : AppCompatActivity() {
         val correctOptionText = intent.getStringExtra(CORRECT_ANS)
 
         // retrieve TextViews and Buttons
-        val questionNumberTextView = findViewById<TextView>(R.id.questions_question_number)
-        val userAnswerTextView = findViewById<TextView>(R.id.questions_user_answers_display)
-        val answerValidityTextView = findViewById<TextView>(R.id.questions_answers_validity)
-        val correctAnswerWasTextView =
-            findViewById<TextView>(R.id.questions_answers_answer_key_text)
-        val realAnswerTextView = findViewById<TextView>(R.id.questions_real_answers_display)
-        val correctAnswersCountTextView = findViewById<TextView>(R.id.questions_answers_count_text)
-        val nextButton = findViewById<Button>(R.id.answers_next_button)
+//        val questionNumberTextView = findViewById<TextView>(R.id.questions_question_number)
+//        val userAnswerTextView = findViewById<TextView>(R.id.questions_user_answers_display)
+//        val answerValidityTextView = findViewById<TextView>(R.id.questions_answers_validity)
+//        val correctAnswerWasTextView =
+//            findViewById<TextView>(R.id.questions_answers_answer_key_text)
+//        val realAnswerTextView = findViewById<TextView>(R.id.questions_real_answers_display)
+//        val correctAnswersCountTextView = findViewById<TextView>(R.id.questions_answers_count_text)
+//        val nextButton = findViewById<Button>(R.id.answers_next_button)
 
-        nextButton.isEnabled = true
+//        nextButton.isEnabled = true
+//
+//        questionNumberTextView.text = "Question $currentQuestionIndex"
+//        userAnswerTextView.text = selectedOptionText
 
-        questionNumberTextView.text = "Question $currentQuestionIndex"
-        userAnswerTextView.text = selectedOptionText
-
-        
+        Log.i(TAG, "isCorrect: $isCorrect")
+        Log.i(TAG, "selectedOptionText: $selectedOptionText")
 
     }
 }
