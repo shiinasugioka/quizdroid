@@ -57,8 +57,9 @@ class TopicOverviewActivity : AppCompatActivity() {
     }
 
     private fun beginQuiz(selectedTopic: String) {
-        val intent = Intent(this, QuestionActivity::class.java)
-        intent.putExtra(TOPIC_NAME, selectedTopic)
-        startActivity(intent)
+        val questionIntent = Intent(this, QuestionActivity::class.java)
+        questionIntent.putExtra(TOPIC_NAME, selectedTopic)
+
+        startActivity(questionIntent)
     }
 }
