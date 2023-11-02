@@ -13,11 +13,8 @@ import org.json.JSONObject
 import java.io.InputStream
 
 private const val TAG = "QuestionsActivity"
-private const val TOPIC_NAME = "topicName"
 
 private const val IS_CORRECT = "isCorrect"
-private const val CURR_QUESTION_INDEX = "currentQuestionIndex"
-private const val SELECTED_OPTION_INDEX = "selectedOptionIndex"
 private const val SELECTED_OPTION_TEXT = "selectedOptionText"
 private const val CORRECT_ANS = "correctOptionText"
 
@@ -25,10 +22,6 @@ class QuestionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question)
-
-        // retrieve intents
-        val topicName = intent.getStringExtra(TOPIC_NAME)
-        Log.i(TAG, "received intent: $topicName")
 
         // retrieve all TextViews and Buttons
         val questionNumberTextView = findViewById<TextView>(R.id.questions_question_number)
@@ -39,7 +32,6 @@ class QuestionActivity : AppCompatActivity() {
         val secondRadioButton = findViewById<RadioButton>(R.id.questions_second_radio_button)
         val thirdRadioButton = findViewById<RadioButton>(R.id.questions_third_radio_button)
         val fourthRadioButton = findViewById<RadioButton>(R.id.questions_fourth_radio_button)
-//        val backButton = findViewById<Button>(R.id.questions_back_button)
         val submitButton = findViewById<Button>(R.id.questions_submit_button)
 
         submitButton.isEnabled = false
@@ -50,21 +42,20 @@ class QuestionActivity : AppCompatActivity() {
         val jsonRoot = JSONObject(jsonString)
         val topics = jsonRoot.getJSONArray("topics")
 
-        // keep track of question index and list of questions
-        var currentQuestionIndex = 0  // find a way to update this
         lateinit var questionsArray: JSONArray
 
         // retrieve array of questions
         for (i in 0 until topics.length()) {
             val topic = topics.getJSONObject(i)
 
-            if (topic.getString("name") == topicName) {
+            if (topic.getString("name") == QuizData.topicName) {
                 questionsArray = topic.getJSONArray("questions")
             }
         }
 
-        val currQuestion = questionsArray.getJSONObject(currentQuestionIndex)
-        val questionNum = currentQuestionIndex + 1
+        val questionNum = QuizData.questionNumber
+        val currQuestion = questionsArray.getJSONObject(questionNum - 1)
+
         val questionText = currQuestion.getString("question")
         val currAnswerOptions = currQuestion.getJSONArray("options")
         val option1 = currAnswerOptions.getString(0)
@@ -72,7 +63,7 @@ class QuestionActivity : AppCompatActivity() {
         val option3 = currAnswerOptions.getString(2)
         val option4 = currAnswerOptions.getString(3)
 
-        questionNumberTextView.text = "Question $questionNum"
+        questionNumberTextView.text = "Question " + questionNum
         questionDescriptionTextView.text = questionText
         firstRadioButton.text = option1
         secondRadioButton.text = option2
@@ -83,30 +74,27 @@ class QuestionActivity : AppCompatActivity() {
         radioGroup.setOnCheckedChangeListener { _, selectedId ->
             val isOptionSelected = selectedId != -1
             submitButton.isEnabled = isOptionSelected
-            selectedOptionIndex = selectedId
+            val radioButtonID = radioGroup.checkedRadioButtonId
+            val selectedButton = radioGroup.findViewById<RadioButton>(radioButtonID)
+            selectedOptionIndex = radioGroup.indexOfChild(selectedButton)
         }
 
         submitButton.setOnClickListener {
-            submitAnswer(selectedOptionIndex, currQuestion, currentQuestionIndex)
+            submitAnswer(selectedOptionIndex, currQuestion)
         }
-
     }
 
     private fun submitAnswer(
         selectedOptionIndex: Int,
-        currQuestion: JSONObject,
-        currentQuestionIndex: Int
+        currQuestion: JSONObject
     ) {
         val correctAnswerIndex = currQuestion.getInt("correctAnswer")
         val isCorrect = (selectedOptionIndex == correctAnswerIndex)
-
         val selectedOptionText = currQuestion.getJSONArray("options").getString(selectedOptionIndex)
         val correctOptionText = currQuestion.getJSONArray("options").getString(correctAnswerIndex)
 
         val answerIntent = Intent(this, AnswerActivity::class.java)
         answerIntent.putExtra(IS_CORRECT, isCorrect)
-        answerIntent.putExtra(CURR_QUESTION_INDEX, currentQuestionIndex)
-        answerIntent.putExtra(SELECTED_OPTION_INDEX, selectedOptionIndex)
         answerIntent.putExtra(SELECTED_OPTION_TEXT, selectedOptionText)
         answerIntent.putExtra(CORRECT_ANS, correctOptionText)
 

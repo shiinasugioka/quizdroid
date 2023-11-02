@@ -88,11 +88,6 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
-            android:id="@+id/questions_back_button"
-            style="@style/questions_back_button"
-            android:text="Back" />
-
-        <Button
             android:id="@+id/questions_submit_button"
             style="@style/questions_submit_button"
             android:text="Submit" />

@@ -60,20 +60,9 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">131dp</item>
-        <item name="android:gravity">center_horizontal</item>
-        <item name="android:paddingLeft">55dp</item>
+        <item name="android:gravity">end</item>
+        <item name="android:paddingLeft">200dp</item>
         <item name="android:paddingRight">55dp</item>
-    </style>
-
-    <style name="questions_back_button">
-        <item name="android:layout_width">140dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginEnd">20dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:backgroundTint">#fce5c5</item>
-        <item name="android:textColor">#FF9D43</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="questions_submit_button">

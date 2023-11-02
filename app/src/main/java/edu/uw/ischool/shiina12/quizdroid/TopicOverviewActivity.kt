@@ -10,7 +10,6 @@ import org.json.JSONObject
 import java.io.InputStream
 
 private const val TAG = "TopicOverviewActivity"
-private const val TOPIC_NAME = "topicName"
 
 class TopicOverviewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,10 +22,7 @@ class TopicOverviewActivity : AppCompatActivity() {
 
         val beginQuizButton = findViewById<Button>(R.id.start_quiz_button)
 
-        lateinit var topicName: String
-
-        val selectedTopic = intent.getStringExtra(TOPIC_NAME)
-        val welcomeMessage = "Welcome to the $selectedTopic Quiz"
+        val welcomeMessage = "Welcome to the ${QuizData.topicName} Quiz"
         quizWelcomeText.text = welcomeMessage
 
         try {
@@ -38,11 +34,11 @@ class TopicOverviewActivity : AppCompatActivity() {
             for (i in 0 until topics.length()) {
                 val topic = topics.getJSONObject(i)
 
-                if (topic.getString("name") == selectedTopic) {
-                    if (selectedTopic != null) topicName = selectedTopic
+                if (topic.getString("name") == QuizData.topicName) {
                     quizDescription.text = topic.getString("description")
                     val numQuestions = topic.getJSONArray("questions").length()
-                    val quizTotalQuestionsTextView = "Total Questions: $numQuestions"
+                    QuizData.setNewNumTotalQuestions(numQuestions)
+                    val quizTotalQuestionsTextView = "Total Questions: ${QuizData.numTotalQuestions}"
                     quizTotalQuestions.text = quizTotalQuestionsTextView
                 }
             }
@@ -52,13 +48,12 @@ class TopicOverviewActivity : AppCompatActivity() {
         }
 
         beginQuizButton.setOnClickListener {
-            beginQuiz(topicName)
+            beginQuiz()
         }
     }
 
-    private fun beginQuiz(selectedTopic: String) {
+    private fun beginQuiz() {
         val questionIntent = Intent(this, QuestionActivity::class.java)
-        questionIntent.putExtra(TOPIC_NAME, selectedTopic)
 
         startActivity(questionIntent)
     }

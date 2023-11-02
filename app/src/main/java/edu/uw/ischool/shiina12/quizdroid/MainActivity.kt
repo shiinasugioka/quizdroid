@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
-private const val TOPIC_NAME = "topicName"
-
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +29,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun goToOverview(selectedTopic: String) {
+        QuizData.setNewTopicName(selectedTopic)
         val overviewIntent = Intent(this, TopicOverviewActivity::class.java)
-        overviewIntent.putExtra(TOPIC_NAME, selectedTopic)
 
         startActivity(overviewIntent)
     }
