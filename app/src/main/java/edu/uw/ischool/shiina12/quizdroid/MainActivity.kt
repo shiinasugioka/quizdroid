@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 
 private const val TAG = "MainActivity"
 
@@ -21,8 +22,19 @@ class MainActivity : AppCompatActivity() {
         topicRepo = quizApp.topicRepository
 
         val mathButton = findViewById<Button>(R.id.QuizOption1)
+        val mathButtonSubtitle = findViewById<TextView>(R.id.QuizOption1Subtitle)
         val physicsButton = findViewById<Button>(R.id.QuizOption2)
+        val physicsButtonSubtitle = findViewById<TextView>(R.id.QuizOption2Subtitle)
         val marvelButton = findViewById<Button>(R.id.QuizOption3)
+        val marvelButtonSubtitle = findViewById<TextView>(R.id.QuizOption3Subtitle)
+
+        val mathButtonSubtitleText = topicRepo.getTopicByName("Math")?.shortDescription
+        mathButtonSubtitle.text = mathButtonSubtitleText
+        val physicsButtonSubtitleText = topicRepo.getTopicByName("Physics")?.shortDescription
+        physicsButtonSubtitle.text = physicsButtonSubtitleText
+        val marvelButtonSubtitleText =
+            topicRepo.getTopicByName("Marvel Super Heroes")?.shortDescription
+        marvelButtonSubtitle.text = marvelButtonSubtitleText
 
         mathButton.setOnClickListener {
             goToOverview("Math")

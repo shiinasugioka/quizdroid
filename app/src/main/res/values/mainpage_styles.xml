@@ -38,4 +38,15 @@
         <item name="android:paddingBottom">15dp</item>
     </style>
 
+    <style name="QuizOptionSubtitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/droid_sans</item>
+        <item name="android:textColor">#F58B29</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">30dp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
 </resources>

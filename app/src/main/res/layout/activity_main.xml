@@ -46,10 +46,13 @@
         <Button
             android:id="@+id/QuizOption1"
             style="@style/quiz_option_button"
-            <LinearLayout></L
             android:text="@string/quiz_option_1"
             tools:layout_editor_absoluteX="156dp"
             tools:layout_editor_absoluteY="280dp" />
+
+        <TextView
+            android:id="@+id/QuizOption1Subtitle"
+            style="@style/QuizOptionSubtitle" />
 
         <Button
             android:id="@+id/QuizOption2"
@@ -58,12 +61,20 @@
             tools:layout_editor_absoluteX="156dp"
             tools:layout_editor_absoluteY="280dp" />
 
+        <TextView
+            android:id="@+id/QuizOption2Subtitle"
+            style="@style/QuizOptionSubtitle" />
+
         <Button
             android:id="@+id/QuizOption3"
             style="@style/quiz_option_button"
             android:text="@string/quiz_option_3"
             tools:layout_editor_absoluteX="156dp"
             tools:layout_editor_absoluteY="280dp" />
+
+        <TextView
+            android:id="@+id/QuizOption3Subtitle"
+            style="@style/QuizOptionSubtitle" />
 
     </LinearLayout>
 
