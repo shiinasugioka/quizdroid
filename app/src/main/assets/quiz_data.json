@@ -3,7 +3,7 @@
     {
       "name": "Math",
       "shortDescription": "Test your college level math skills!",
-      "longDescription": "Test your college level math skills!",
+      "longDescription": "Test your college level math skills! No scratch paper necessary.",
       "questions": [
         {
           "question": "What is the derivative of f(x) = 3x^2 - 2x + 5 with respect to x?",

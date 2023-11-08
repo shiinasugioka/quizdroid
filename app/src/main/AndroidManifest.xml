@@ -22,14 +22,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TopicOverviewActivity"></activity>
-        <activity android:name=".QuestionActivity"></activity>
-        <activity android:name=".AnswerActivity"></activity>
+        <activity android:name=".TopicOverviewActivity" />
+        <activity android:name=".QuestionActivity" />
+        <activity android:name=".AnswerActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
 
 </manifest>

@@ -1,7 +1,6 @@
 package edu.uw.ischool.shiina12.quizdroid
 
 import android.content.Context
-import android.util.Log
 import org.json.JSONObject
 import java.io.InputStream
 import java.io.Serializable
@@ -36,24 +35,24 @@ class TopicRepositoryList(context: Context) : TopicRepository {
         val inputStream: InputStream = assets.open("quiz_data.json")
         val jsonString = inputStream.bufferedReader().use { it.readText() }
         val jsonRoot = JSONObject(jsonString)
-        val topics = jsonRoot.getJSONArray("topics")
+        val listOfTopics = jsonRoot.getJSONArray("topics")
 
-        for (i in 0 until topics.length()) {
-            val jsonTopic = topics.getJSONObject(i)
+        for (i in 0 until listOfTopics.length()) {
+            val jsonTopic = listOfTopics.getJSONObject(i)
             val jsonQuestions = jsonTopic.getJSONArray("questions")
             val listOfQuestions = mutableListOf<Quiz>()
 
-            for (i in 0 until jsonQuestions.length()) {
-                val jsonArrQuestions = jsonQuestions.getJSONObject(i).getJSONArray("options")
+            for (j in 0 until jsonQuestions.length()) {
+                val jsonArrQuestions = jsonQuestions.getJSONObject(j).getJSONArray("options")
                 val questionOptions = mutableListOf<String>()
-                for (i in 0 until jsonArrQuestions.length()) {
-                    questionOptions.add(jsonArrQuestions.getString(i))
+                for (k in 0 until jsonArrQuestions.length()) {
+                    questionOptions.add(jsonArrQuestions.getString(k))
                 }
 
                 val quizItem = Quiz(
-                    jsonQuestions.getJSONObject(i).getString("question"),
+                    jsonQuestions.getJSONObject(j).getString("question"),
                     questionOptions,
-                    jsonQuestions.getJSONObject(i).getInt("correctAnswer")
+                    jsonQuestions.getJSONObject(j).getInt("correctAnswer")
                 )
 
                 listOfQuestions.add(quizItem)
@@ -66,7 +65,7 @@ class TopicRepositoryList(context: Context) : TopicRepository {
                 listOfQuestions
             )
 
-            topics.put(topicItem)
+            topics.add(topicItem)
         }
 
         inputStream.close()
@@ -77,7 +76,6 @@ class TopicRepositoryList(context: Context) : TopicRepository {
     }
 
     override fun getTopicByName(topicName: String): Topic? {
-        Log.i(TAG, "getTopicName: ${topics.find { it.title == topicName }}")
         return topics.find { it.title == topicName }
     }
 }

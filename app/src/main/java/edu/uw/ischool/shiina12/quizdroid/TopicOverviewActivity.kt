@@ -2,21 +2,22 @@ package edu.uw.ischool.shiina12.quizdroid
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import org.json.JSONObject
-import java.io.InputStream
 
 private const val TAG = "TopicOverviewActivity"
 
-private const val TOPIC_OBJECT = "topicObject"
-
 class TopicOverviewActivity : AppCompatActivity() {
+    private lateinit var quizApp: QuizApp
+    private lateinit var topicRepo: TopicRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_topic_overview)
+
+        quizApp = application as QuizApp
+        topicRepo = quizApp.topicRepository
 
         // find UI elements
         val quizWelcomeText = findViewById<TextView>(R.id.quiz_welcome_text)
@@ -24,36 +25,16 @@ class TopicOverviewActivity : AppCompatActivity() {
         val quizTotalQuestions = findViewById<TextView>(R.id.quiz_total_questions)
         val beginQuizButton = findViewById<Button>(R.id.start_quiz_button)
 
-        // retrieve intents
-        val topicObject = @Suppress("DEPRECATION") intent.getSerializableExtra(TOPIC_OBJECT)
+        val topicName = quizApp.currTopic
+        val topicObject = (topicRepo.getTopicByName(topicName) as Topic)
 
-        Log.i(TAG, topicObject.toString())
-
-        val welcomeMessage = "Welcome to the ${QuizData.topicName} Quiz"
-        quizWelcomeText.text = welcomeMessage
-
-        try {
-            val inputStream: InputStream = assets.open("quiz_data.json")
-            val jsonString = inputStream.bufferedReader().use { it.readText() }
-            val jsonRoot = JSONObject(jsonString)
-            val topics = jsonRoot.getJSONArray("topics")
-
-            for (i in 0 until topics.length()) {
-                val topic = topics.getJSONObject(i)
-
-                if (topic.getString("name") == QuizData.topicName) {
-                    quizDescription.text = topic.getString("description")
-                    val numQuestions = topic.getJSONArray("questions").length()
-                    QuizData.setNewNumTotalQuestions(numQuestions)
-                    val quizTotalQuestionsTextView =
-                        "Total Questions: ${QuizData.numTotalQuestions}"
-                    quizTotalQuestions.text = quizTotalQuestionsTextView
-                }
-            }
-
-        } catch (e: Exception) {
-            Log.i(TAG, "catch: failed to read from json file")
-        }
+        val welcomeMessageText = "Welcome to the ${topicObject.title} Quiz"
+        quizWelcomeText.text = welcomeMessageText
+        quizDescription.text = topicObject.longDescription
+        quizApp.setNewNumTotalQuestions(topicObject.listOfQuestions.size)
+        val num = quizApp.numTotalQuestions
+        val quizTotalQuestionsText = "Total Questions: $num"
+        quizTotalQuestions.text = quizTotalQuestionsText
 
         beginQuizButton.setOnClickListener {
             beginQuiz()
@@ -62,7 +43,6 @@ class TopicOverviewActivity : AppCompatActivity() {
 
     private fun beginQuiz() {
         val questionIntent = Intent(this, QuestionActivity::class.java)
-
         startActivity(questionIntent)
     }
 }

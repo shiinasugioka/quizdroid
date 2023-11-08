@@ -2,27 +2,43 @@ package edu.uw.ischool.shiina12.quizdroid
 
 import android.app.Application
 import android.util.Log
-import android.content.Context
-
 
 private const val TAG = "QuizApp"
 
 class QuizApp : Application() {
-    companion object {
-        private var instance: QuizApp? = null
-
-        fun getInstance(): QuizApp {
-            return instance ?: QuizApp()
-        }
-    }
-
     lateinit var topicRepository: TopicRepository
+    var correctAnswerCount: Int = 0
+    var questionNumber: Int = 1
+    var numTotalQuestions: Int = 0
+    var currTopic: String = ""
 
     override fun onCreate() {
         super.onCreate()
         Log.d(TAG, "started QuizApp Application")
-        instance = this
         topicRepository = TopicRepositoryList(this)
+    }
+
+    fun reset() {
+        correctAnswerCount = 0
+        questionNumber = 1
+        numTotalQuestions = 0
+        currTopic = ""
+    }
+
+    fun incrementCorrectAnswerCount() {
+        correctAnswerCount++
+    }
+
+    fun incrementQuestionNumber() {
+        questionNumber++
+    }
+
+    fun setNewNumTotalQuestions(questionCount: Int) {
+        numTotalQuestions = questionCount
+    }
+
+    fun setNewTopic(newTopic: String) {
+        currTopic = newTopic
     }
 
 }

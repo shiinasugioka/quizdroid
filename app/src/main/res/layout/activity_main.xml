@@ -46,6 +46,7 @@
         <Button
             android:id="@+id/QuizOption1"
             style="@style/quiz_option_button"
+            <LinearLayout></L
             android:text="@string/quiz_option_1"
             tools:layout_editor_absoluteX="156dp"
             tools:layout_editor_absoluteY="280dp" />
