@@ -8,13 +8,21 @@ import android.content.Context
 private const val TAG = "QuizApp"
 
 class QuizApp : Application() {
-    private val context: Context = this
+    companion object {
+        private var instance: QuizApp? = null
 
-    val topicRepository: TopicRepository by lazy { TopicRepositoryList(context) }
+        fun getInstance(): QuizApp {
+            return instance ?: QuizApp()
+        }
+    }
+
+    lateinit var topicRepository: TopicRepository
 
     override fun onCreate() {
         super.onCreate()
         Log.d(TAG, "started QuizApp Application")
-        Log.d(TAG, topicRepository.toString())
+        instance = this
+        topicRepository = TopicRepositoryList(this)
     }
+
 }

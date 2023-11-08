@@ -11,16 +11,23 @@ import java.io.InputStream
 
 private const val TAG = "TopicOverviewActivity"
 
+private const val TOPIC_OBJECT = "topicObject"
+
 class TopicOverviewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_topic_overview)
 
+        // find UI elements
         val quizWelcomeText = findViewById<TextView>(R.id.quiz_welcome_text)
         val quizDescription = findViewById<TextView>(R.id.quiz_description)
         val quizTotalQuestions = findViewById<TextView>(R.id.quiz_total_questions)
-
         val beginQuizButton = findViewById<Button>(R.id.start_quiz_button)
+
+        // retrieve intents
+        val topicObject = @Suppress("DEPRECATION") intent.getSerializableExtra(TOPIC_OBJECT)
+
+        Log.i(TAG, topicObject.toString())
 
         val welcomeMessage = "Welcome to the ${QuizData.topicName} Quiz"
         quizWelcomeText.text = welcomeMessage
@@ -38,7 +45,8 @@ class TopicOverviewActivity : AppCompatActivity() {
                     quizDescription.text = topic.getString("description")
                     val numQuestions = topic.getJSONArray("questions").length()
                     QuizData.setNewNumTotalQuestions(numQuestions)
-                    val quizTotalQuestionsTextView = "Total Questions: ${QuizData.numTotalQuestions}"
+                    val quizTotalQuestionsTextView =
+                        "Total Questions: ${QuizData.numTotalQuestions}"
                     quizTotalQuestions.text = quizTotalQuestionsTextView
                 }
             }

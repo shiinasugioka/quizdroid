@@ -2,7 +2,8 @@
   "topics": [
     {
       "name": "Math",
-      "description": "Test your college level math skills!",
+      "shortDescription": "Test your college level math skills!",
+      "longDescription": "Test your college level math skills!",
       "questions": [
         {
           "question": "What is the derivative of f(x) = 3x^2 - 2x + 5 with respect to x?",
@@ -78,7 +79,8 @@
     },
     {
       "name": "Physics",
-      "description": "Don't worry there's only a few questions for this quiz.",
+      "shortDescription": "Don't worry there's only a few questions for this quiz.",
+      "longDescription": "Test some college level physics questions. Don't worry there's only a few questions for this quiz.",
       "questions": [
         {
           "question": "A car is initially at rest and accelerates uniformly at a rate of 2 m/s² for 5 seconds. How far does the car travel during this time?",
@@ -114,7 +116,8 @@
     },
     {
       "name": "Marvel Super Heroes",
-      "description": "Dive into the Marvel Universe!",
+      "shortDescription": "Dive into the Marvel Universe!",
+      "longDescription": "Test your knowledge on the Marvel Universe!",
       "questions": [
         {
           "question": "Who is known as the 'God of Thunder' in the Marvel Universe?",
