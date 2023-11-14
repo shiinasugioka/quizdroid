@@ -1,0 +1,83 @@
+[
+  {
+    "title": "Math",
+    "shortDesc": "Test your college level math skills!",
+    "longDesc": "Test your college level math skills! No scratch paper necessary.",
+    "questions": [
+      {
+        "text": "What is the derivative of f(x) = 3x^2 - 2x + 5 with respect to x?",
+        "answer": "1",
+        "answers": [
+          "6x - 2",
+          "6x - 1",
+          "6x + 2",
+          "3x^3 - x^2 + 5x"
+        ]
+      },
+      {
+        "text": "If a triangle has angles measuring 30 degrees, 60 degrees, and x degrees, what is the value of x?",
+        "answer": "3",
+        "answers": [
+          "45 degrees",
+          "60 degrees",
+          "90 degrees",
+          "120 degrees"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Marvel Super Heroes",
+    "shortDesc": "Dive into the Marvel Universe!",
+    "longDesc": "Test your knowledge on the Marvel Universe!",
+    "questions": [
+      {
+        "text": "Who is known as the 'God of Thunder' in the Marvel Universe?",
+        "answer": "3",
+        "answers": [
+          "Iron Man",
+          "Spider-Man",
+          "Thor",
+          "Captain America"
+        ]
+      },
+      {
+        "text": "What is the real name of the mutant superhero with optic blasts known as Cyclops?",
+        "answer": "3",
+        "answers": [
+          "Scott Lang",
+          "Logan",
+          "Scott Summers",
+          "Peter Parker"
+        ]
+      },
+      {
+        "text": "Which superhero wears a suit made of vibranium and is the king of Wakanda?",
+        "answer": "2",
+        "answers": [
+          "Black Widow",
+          "Black Panther",
+          "Daredevil",
+          "Ant-Man"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Physics",
+    "shortDesc": "This is my least favorite subject.",
+    "longDesc": "Test some college level physics questions. Don't worry there's only one question for this quiz.",
+    "questions": [
+      {
+        "text": "A car is initially at rest and accelerates uniformly at a rate of 2 m/s² for 5 seconds. How far does the car travel during this time?",
+        "answer": "3",
+        "answers": [
+          "10 meters",
+          "20 meters",
+          "25 meters",
+          "50 meters"
+        ]
+      }
+    ]
+  }
+]
