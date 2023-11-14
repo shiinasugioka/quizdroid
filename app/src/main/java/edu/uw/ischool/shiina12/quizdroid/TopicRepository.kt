@@ -41,8 +41,9 @@ class TopicRepositoryList(context: Context) : TopicRepository {
     private var topics = mutableListOf<Topic>()
     private var topicNames = mutableListOf<String>()
 
-//    private var downloadURL = "https://tednewardsandbox.site44.com/questions.json"
-    private var downloadURL = "https://json-parser.com/34437c76"
+    private var downloadURL = "https://tednewardsandbox.site44.com/questions.json"
+    // Extra Credit
+//    private var downloadURL = "https://raw.githubusercontent.com/shiinasugioka/quizdroid/storage/app/data/quiz_data_formatted.json"
 
     init {
         loadTopicsFromURL()
@@ -63,9 +64,14 @@ class TopicRepositoryList(context: Context) : TopicRepository {
         val updateList = mutableListOf<Topic>()
         try {
             val listOfTopics = JSONArray(jsonString)
+            Log.i(TAG, "list of topics len: ${listOfTopics.length()}")
+            Log.i(TAG, "first title: ${listOfTopics.getJSONObject(0).getString("title")}")
+            Log.i(TAG, "second title: ${listOfTopics.getJSONObject(1).getString("title")}")
+            Log.i(TAG, "third title: ${listOfTopics.getJSONObject(2).getString("title")}")
 
             for (i in 0 until listOfTopics.length()) {
                 val topicObj = listOfTopics.getJSONObject(i)
+                Log.i(TAG, "index: $i")
 
                 val jsonQuestions = topicObj.getJSONArray("questions")
                 val listOfQuestions = mutableListOf<Quiz>()
@@ -89,13 +95,18 @@ class TopicRepositoryList(context: Context) : TopicRepository {
                 }
 
                 topicNames.add(topicObj.getString("title"))
+                Log.i(TAG, "here 1")
 
                 val topicItem = Topic(
                     topicObj.getString("title"),
-                    topicObj.getString("shortDesc"),
-                    topicObj.getString("longDesc"),
+                    topicObj.getString("desc"),
+                    topicObj.getString("desc"),
                     listOfQuestions
                 )
+
+                Log.i(TAG, "here 2")
+
+                Log.i(TAG, topicObj.getString("title at index $i"))
 
                 updateList.add(topicItem)
             }
@@ -105,7 +116,6 @@ class TopicRepositoryList(context: Context) : TopicRepository {
         } catch (e: JSONException) {
             Log.e(TAG, "JSON invalid: $e")
         }
-
     }
 
     override fun getAllTopics(): List<Topic> {

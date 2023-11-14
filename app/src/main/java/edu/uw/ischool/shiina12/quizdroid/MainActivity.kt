@@ -26,40 +26,50 @@ class MainActivity : AppCompatActivity() {
         quizApp = application as QuizApp
         topicRepo = quizApp.topicRepository
 
-        val mathButton = findViewById<Button>(R.id.QuizOption1)
-        val mathButtonSubtitle = findViewById<TextView>(R.id.QuizOption1Subtitle)
-        val physicsButton = findViewById<Button>(R.id.QuizOption2)
-        val physicsButtonSubtitle = findViewById<TextView>(R.id.QuizOption2Subtitle)
-        val marvelButton = findViewById<Button>(R.id.QuizOption3)
-        val marvelButtonSubtitle = findViewById<TextView>(R.id.QuizOption3Subtitle)
+        val topButton = findViewById<Button>(R.id.QuizOption1)
+        val topButtonSubtitle = findViewById<TextView>(R.id.QuizOption1Subtitle)
+        val middleButton = findViewById<Button>(R.id.QuizOption2)
+        val middleButtonSubtitle = findViewById<TextView>(R.id.QuizOption2Subtitle)
+        val bottomButton = findViewById<Button>(R.id.QuizOption3)
+        val bottomButtonSubtitle = findViewById<TextView>(R.id.QuizOption3Subtitle)
 
-        val mathTopicName = "Mathematics"
-        val scienceTopicName = "Science!"
-        val marvelTopicName = "Marvel Super Heroes"
-
-        val mathButtonSubtitleText = topicRepo.getTopicByName(mathTopicName)?.shortDescription
-        mathButtonSubtitle.text = mathButtonSubtitleText
-        mathButton.text = mathTopicName
-
-        val physicsButtonSubtitleText = topicRepo.getTopicByName(scienceTopicName)?.shortDescription
-        physicsButtonSubtitle.text = physicsButtonSubtitleText
-        physicsButton.text = scienceTopicName
-
-        val marvelButtonSubtitleText =
-            topicRepo.getTopicByName(marvelTopicName)?.shortDescription
-        marvelButtonSubtitle.text = marvelButtonSubtitleText
-        marvelButton.text = marvelTopicName
-
-        mathButton.setOnClickListener {
-            goToOverview(mathTopicName)
+        val listOfTopicNames = topicRepo.getTopicNames()
+        Log.i(TAG, listOfTopicNames.toString())
+        if (listOfTopicNames.size > 3) {
+            throw Exception("You have too many topics.")
         }
 
-        physicsButton.setOnClickListener {
-            goToOverview(scienceTopicName)
+//        val firstTopicName = listOfTopicNames[0]
+//        val secondTopicName = listOfTopicNames[1]
+//        val thirdTopicName = listOfTopicNames[2]
+
+        val firstTopicName = "first"
+        val secondTopicName = "second"
+        val thirdTopicName = "third"
+
+        val topButtonSubtitleText = topicRepo.getTopicByName(firstTopicName)?.shortDescription
+        topButtonSubtitle.text = topButtonSubtitleText
+        topButton.text = firstTopicName
+
+        val middleButtonSubtitleText = topicRepo.getTopicByName(secondTopicName)?.shortDescription
+        middleButtonSubtitle.text = middleButtonSubtitleText
+        middleButton.text = secondTopicName
+
+        val bottomButtonSubtitleText =
+            topicRepo.getTopicByName(thirdTopicName)?.shortDescription
+        bottomButtonSubtitle.text = bottomButtonSubtitleText
+        bottomButton.text = thirdTopicName
+
+        topButton.setOnClickListener {
+            goToOverview(firstTopicName)
         }
 
-        marvelButton.setOnClickListener {
-            goToOverview(marvelTopicName)
+        middleButton.setOnClickListener {
+            goToOverview(secondTopicName)
+        }
+
+        bottomButton.setOnClickListener {
+            goToOverview(thirdTopicName)
         }
 
     }
