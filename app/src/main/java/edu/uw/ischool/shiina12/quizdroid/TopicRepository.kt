@@ -59,36 +59,36 @@ class TopicRepositoryList(context: Context) : TopicRepository {
     private fun parseJsonString(jsonString: String) {
         try {
             val listOfTopics = JSONArray(jsonString)
-//            val listOfTopics = jsonRoot.getJSONArray("topics")
-
-
             val updateList = mutableListOf<Topic>()
 
             for (i in 0 until listOfTopics.length()) {
-                val jsonTopic = listOfTopics.getJSONObject(i)
-                val jsonQuestions = jsonTopic.getJSONArray("questions")
+                val topicObj = listOfTopics.getJSONObject(i)
+
+                val jsonQuestions = topicObj.getJSONArray("questions")
                 val listOfQuestions = mutableListOf<Quiz>()
 
                 for (j in 0 until jsonQuestions.length()) {
-                    val jsonArrQuestions = jsonQuestions.getJSONObject(j).getJSONArray("options")
+                    val jsonArrQuestions = jsonQuestions.getJSONObject(j).getJSONArray("answers")
                     val questionOptions = mutableListOf<String>()
                     for (k in 0 until jsonArrQuestions.length()) {
                         questionOptions.add(jsonArrQuestions.getString(k))
                     }
 
+                    val correctAns = jsonQuestions.getJSONObject(j).getInt("answer") - 1
+
                     val quizItem = Quiz(
-                        jsonQuestions.getJSONObject(j).getString("question"),
+                        jsonQuestions.getJSONObject(j).getString("text"),
                         questionOptions,
-                        jsonQuestions.getJSONObject(j).getInt("correctAnswer")
+                        correctAns
                     )
 
                     listOfQuestions.add(quizItem)
                 }
 
                 val topicItem = Topic(
-                    jsonTopic.getString("name"),
-                    jsonTopic.getString("shortDescription"),
-                    jsonTopic.getString("longDescription"),
+                    topicObj.getString("title"),
+                    topicObj.getString("desc"),
+                    topicObj.getString("desc"),
                     listOfQuestions
                 )
 
@@ -96,6 +96,7 @@ class TopicRepositoryList(context: Context) : TopicRepository {
             }
 
             topics = updateList
+            Log.i(TAG, "final topics: $topics")
         } catch (e: JSONException) {
             Log.e(TAG, "JSON invalid: $e")
         }

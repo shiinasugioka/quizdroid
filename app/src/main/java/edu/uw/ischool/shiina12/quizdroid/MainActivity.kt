@@ -33,24 +33,33 @@ class MainActivity : AppCompatActivity() {
         val marvelButton = findViewById<Button>(R.id.QuizOption3)
         val marvelButtonSubtitle = findViewById<TextView>(R.id.QuizOption3Subtitle)
 
-        val mathButtonSubtitleText = topicRepo.getTopicByName("Math")?.shortDescription
+        val mathTopicName = "Mathematics"
+        val scienceTopicName = "Science!"
+        val marvelTopicName = "Marvel Super Heroes"
+
+        val mathButtonSubtitleText = topicRepo.getTopicByName(mathTopicName)?.shortDescription
         mathButtonSubtitle.text = mathButtonSubtitleText
-        val physicsButtonSubtitleText = topicRepo.getTopicByName("Physics")?.shortDescription
+        mathButton.text = mathTopicName
+
+        val physicsButtonSubtitleText = topicRepo.getTopicByName(scienceTopicName)?.shortDescription
         physicsButtonSubtitle.text = physicsButtonSubtitleText
+        physicsButton.text = scienceTopicName
+
         val marvelButtonSubtitleText =
-            topicRepo.getTopicByName("Marvel Super Heroes")?.shortDescription
+            topicRepo.getTopicByName(marvelTopicName)?.shortDescription
         marvelButtonSubtitle.text = marvelButtonSubtitleText
+        marvelButton.text = marvelTopicName
 
         mathButton.setOnClickListener {
-            goToOverview("Math")
+            goToOverview(mathTopicName)
         }
 
         physicsButton.setOnClickListener {
-            goToOverview("Physics")
+            goToOverview(scienceTopicName)
         }
 
         marvelButton.setOnClickListener {
-            goToOverview("Marvel Super Heroes")
+            goToOverview(marvelTopicName)
         }
 
     }
