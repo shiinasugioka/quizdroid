@@ -18,6 +18,7 @@ private const val TAG = "TopicRepo"
 
 interface TopicRepository {
     fun getAllTopics(): List<Topic>
+    fun getTopicNames(): List<String>
     fun getTopicByName(topicName: String): Topic?
 }
 
@@ -38,9 +39,10 @@ data class Topic(
 // from a hard-coded list initialized on startup
 class TopicRepositoryList(context: Context) : TopicRepository {
     private var topics = mutableListOf<Topic>()
+    private var topicNames = mutableListOf<String>()
 
-    //    private val assets = context.assets
-    private var downloadURL = "https://tednewardsandbox.site44.com/questions.json"
+//    private var downloadURL = "https://tednewardsandbox.site44.com/questions.json"
+    private var downloadURL = "http://json-parser.com/34437c76"
 
     init {
         loadTopicsFromURL()
@@ -57,9 +59,9 @@ class TopicRepositoryList(context: Context) : TopicRepository {
     }
 
     private fun parseJsonString(jsonString: String) {
+        val updateList = mutableListOf<Topic>()
         try {
             val listOfTopics = JSONArray(jsonString)
-            val updateList = mutableListOf<Topic>()
 
             for (i in 0 until listOfTopics.length()) {
                 val topicObj = listOfTopics.getJSONObject(i)
@@ -85,10 +87,12 @@ class TopicRepositoryList(context: Context) : TopicRepository {
                     listOfQuestions.add(quizItem)
                 }
 
+                topicNames.add(topicObj.getString("title"))
+
                 val topicItem = Topic(
                     topicObj.getString("title"),
-                    topicObj.getString("desc"),
-                    topicObj.getString("desc"),
+                    topicObj.getString("shortDesc"),
+                    topicObj.getString("longDesc"),
                     listOfQuestions
                 )
 
@@ -105,6 +109,10 @@ class TopicRepositoryList(context: Context) : TopicRepository {
 
     override fun getAllTopics(): List<Topic> {
         return topics
+    }
+
+    override fun getTopicNames(): List<String> {
+        return topicNames
     }
 
     override fun getTopicByName(topicName: String): Topic? {
