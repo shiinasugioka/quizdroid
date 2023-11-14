@@ -1,7 +1,7 @@
 [
   {
     "title": "Math",
-    "desc": "Test your college level math skills!",
+    "desc": "Test your college level math skills.",
     "questions": [
       {
         "text": "What is the derivative of f(x) = 3x^2 - 2x + 5 with respect to x?",
