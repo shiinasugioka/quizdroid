@@ -39,13 +39,13 @@ class MainActivity : AppCompatActivity() {
             throw Exception("You have too many topics.")
         }
 
-//        val firstTopicName = listOfTopicNames[0]
-//        val secondTopicName = listOfTopicNames[1]
-//        val thirdTopicName = listOfTopicNames[2]
+        val firstTopicName = listOfTopicNames[0]
+        val secondTopicName = listOfTopicNames[1]
+        val thirdTopicName = listOfTopicNames[2]
 
-        val firstTopicName = "first"
-        val secondTopicName = "second"
-        val thirdTopicName = "third"
+//        val firstTopicName = "first"
+//        val secondTopicName = "second"
+//        val thirdTopicName = "third"
 
         val topButtonSubtitleText = topicRepo.getTopicByName(firstTopicName)?.shortDescription
         topButtonSubtitle.text = topButtonSubtitleText

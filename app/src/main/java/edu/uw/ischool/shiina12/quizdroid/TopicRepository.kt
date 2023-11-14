@@ -64,21 +64,20 @@ class TopicRepositoryList(context: Context) : TopicRepository {
         val updateList = mutableListOf<Topic>()
         try {
             val listOfTopics = JSONArray(jsonString)
-            Log.i(TAG, "list of topics len: ${listOfTopics.length()}")
-            Log.i(TAG, "first title: ${listOfTopics.getJSONObject(0).getString("title")}")
-            Log.i(TAG, "second title: ${listOfTopics.getJSONObject(1).getString("title")}")
-            Log.i(TAG, "third title: ${listOfTopics.getJSONObject(2).getString("title")}")
 
             for (i in 0 until listOfTopics.length()) {
                 val topicObj = listOfTopics.getJSONObject(i)
                 Log.i(TAG, "index: $i")
 
+                val title = topicObj.getString("title")
+                val desc = topicObj.getString("desc")
                 val jsonQuestions = topicObj.getJSONArray("questions")
                 val listOfQuestions = mutableListOf<Quiz>()
 
                 for (j in 0 until jsonQuestions.length()) {
                     val jsonArrQuestions = jsonQuestions.getJSONObject(j).getJSONArray("answers")
                     val questionOptions = mutableListOf<String>()
+
                     for (k in 0 until jsonArrQuestions.length()) {
                         questionOptions.add(jsonArrQuestions.getString(k))
                     }
@@ -95,24 +94,18 @@ class TopicRepositoryList(context: Context) : TopicRepository {
                 }
 
                 topicNames.add(topicObj.getString("title"))
-                Log.i(TAG, "here 1")
 
                 val topicItem = Topic(
-                    topicObj.getString("title"),
-                    topicObj.getString("desc"),
-                    topicObj.getString("desc"),
+                    title,
+                    desc,
+                    desc,
                     listOfQuestions
                 )
-
-                Log.i(TAG, "here 2")
-
-                Log.i(TAG, topicObj.getString("title at index $i"))
 
                 updateList.add(topicItem)
             }
 
             topics = updateList
-            Log.i(TAG, "final topics: $topics")
         } catch (e: JSONException) {
             Log.e(TAG, "JSON invalid: $e")
         }
