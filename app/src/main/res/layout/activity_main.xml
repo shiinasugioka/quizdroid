@@ -10,8 +10,8 @@
         android:id="@+id/actionbar_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        android:layout_marginBottom="675dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,15 +25,14 @@
 
     </LinearLayout>
 
-
     <LinearLayout
         android:id="@+id/linearLayout2"
         style="@style/linearlayout_text"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/actionbar_linearLayout">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView style="@style/text_section" />
     </LinearLayout>

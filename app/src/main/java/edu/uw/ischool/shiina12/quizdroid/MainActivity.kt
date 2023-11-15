@@ -97,7 +97,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openPreferences() {
-        Log.i(TAG, "OPEN PREFERENCES")
+        val preferencesIntent = Intent(this, PreferencesActivity::class.java)
+        startActivity(preferencesIntent)
     }
 
     private fun goToOverview(selectedTopic: String) {

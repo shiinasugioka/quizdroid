@@ -42,7 +42,7 @@ class TopicRepositoryList(context: Context) : TopicRepository {
     private var topicNames = mutableListOf<String>()
 
     private var downloadURL = "https://tednewardsandbox.site44.com/questions.json"
-    // Extra Credit
+//    Extra Credit
 //    private var downloadURL = "https://raw.githubusercontent.com/shiinasugioka/quizdroid/storage/app/data/quiz_data_formatted.json"
 
     init {
@@ -55,7 +55,6 @@ class TopicRepositoryList(context: Context) : TopicRepository {
             val urlConnection = URL(downloadURL).openConnection() as HttpURLConnection
             val inputStream: InputStream = urlConnection.inputStream
             val jsonString = inputStream.bufferedReader().use { it.readText() }
-            Log.i(TAG, jsonString)
             parseJsonString(jsonString)
         }
     }

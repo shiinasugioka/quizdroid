@@ -6,31 +6,32 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/linearlayout_title"
-        style="@style/linearlayout_title"
+        android:id="@+id/actionbar_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="675dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/app_title"
-            style="@style/app_title" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/actionbar_theme" />
 
-        <TextView
-            android:id="@+id/app_title_ep"
-            style="@style/app_title_ep" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearlayout_questions_text_content"
         style="@style/linearlayout_questions_text_content"
+        android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toTopOf="@+id/linearlayout_questions_radio_buttons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearlayout_title">
+        app:layout_constraintTop_toTopOf="Parent">
 
         <TextView
             android:id="@+id/questions_question_number"
