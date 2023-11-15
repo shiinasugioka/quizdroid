@@ -1,13 +1,9 @@
 package edu.uw.ischool.shiina12.quizdroid
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.util.Log
 import org.json.JSONArray
 import org.json.JSONException
-import org.json.JSONObject
 import java.io.InputStream
-import java.io.InputStreamReader
 import java.io.Serializable
 import java.net.HttpURLConnection
 import java.net.URL
@@ -20,6 +16,9 @@ interface TopicRepository {
     fun getAllTopics(): List<Topic>
     fun getTopicNames(): List<String>
     fun getTopicByName(topicName: String): Topic?
+    fun setDataURL(newURL: String)
+    fun getDataURL(): String
+    fun loadTopicsFromURL()
 }
 
 data class Quiz(
@@ -37,22 +36,24 @@ data class Topic(
 
 // implementation that simply stores elements in memory
 // from a hard-coded list initialized on startup
-class TopicRepositoryList(context: Context) : TopicRepository {
+class TopicRepositoryList() : TopicRepository {
     private var topics = mutableListOf<Topic>()
     private var topicNames = mutableListOf<String>()
 
-    private var downloadURL = "https://tednewardsandbox.site44.com/questions.json"
-//    Extra Credit
-//    private var downloadURL = "https://raw.githubusercontent.com/shiinasugioka/quizdroid/storage/app/data/quiz_data_formatted.json"
+//    private var downloadURL = "https://tednewardsandbox.site44.com/questions.json"
+    private var downloadURL: String
 
     init {
+//        downloadURL = "https://raw.githubusercontent.com/shiinasugioka/quizdroid/storage/app/data/quiz_data_formatted.json"
+        downloadURL = "https://tednewardsandbox.site44.com/questions.json"
         loadTopicsFromURL()
     }
 
-    private fun loadTopicsFromURL() {
+    override fun loadTopicsFromURL() {
         val executor: Executor = Executors.newSingleThreadExecutor()
         executor.execute {
             val urlConnection = URL(downloadURL).openConnection() as HttpURLConnection
+            Log.i(TAG, "URL in topicRepo: $downloadURL")
             val inputStream: InputStream = urlConnection.inputStream
             val jsonString = inputStream.bufferedReader().use { it.readText() }
             parseJsonString(jsonString)
@@ -61,12 +62,16 @@ class TopicRepositoryList(context: Context) : TopicRepository {
 
     private fun parseJsonString(jsonString: String) {
         val updateList = mutableListOf<Topic>()
+        topics.clear()
+        topicNames.clear()
+        Log.i(TAG, "cleared topicNames array")
+
         try {
+            updateList.clear()
             val listOfTopics = JSONArray(jsonString)
 
             for (i in 0 until listOfTopics.length()) {
                 val topicObj = listOfTopics.getJSONObject(i)
-                Log.i(TAG, "index: $i")
 
                 val title = topicObj.getString("title")
                 val desc = topicObj.getString("desc")
@@ -105,6 +110,7 @@ class TopicRepositoryList(context: Context) : TopicRepository {
             }
 
             topics = updateList
+            Log.i(TAG, "final topicNames in topicRepo: $topicNames")
         } catch (e: JSONException) {
             Log.e(TAG, "JSON invalid: $e")
         }
@@ -120,5 +126,14 @@ class TopicRepositoryList(context: Context) : TopicRepository {
 
     override fun getTopicByName(topicName: String): Topic? {
         return topics.find { it.title == topicName }
+    }
+
+    override fun setDataURL(newURL: String) {
+        downloadURL = newURL
+        Log.i(TAG, "set new URL in topicRepo: $downloadURL")
+    }
+
+    override fun getDataURL(): String {
+        return downloadURL
     }
 }

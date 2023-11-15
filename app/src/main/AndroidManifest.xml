@@ -27,6 +27,7 @@
         <activity android:name=".TopicOverviewActivity" />
         <activity android:name=".QuestionActivity" />
         <activity android:name=".AnswerActivity" />
+        <activity android:name=".PreferencesActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

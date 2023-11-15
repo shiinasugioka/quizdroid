@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         quizApp = application as QuizApp
         topicRepo = quizApp.topicRepository
+        topicRepo.loadTopicsFromURL()
 
         val topButton = findViewById<Button>(R.id.QuizOption1)
         val topButtonSubtitle = findViewById<TextView>(R.id.QuizOption1Subtitle)
@@ -38,11 +39,12 @@ class MainActivity : AppCompatActivity() {
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
 
         setSupportActionBar(toolbar)
-//        toolbar.title = "QuizDroid!"
         supportActionBar?.title = "QuizDroid!"
 
         val listOfTopicNames = topicRepo.getTopicNames()
-        Log.i(TAG, listOfTopicNames.toString())
+        val currURL = topicRepo.getDataURL()
+        Log.i(TAG, "list of topic names: $listOfTopicNames")
+        Log.i(TAG, "curr URL: $currURL")
         if (listOfTopicNames.size > 3) {
             throw Exception("You have too many topics. Found ${listOfTopicNames.size} not 3.")
         } else if (listOfTopicNames.size < 3) {

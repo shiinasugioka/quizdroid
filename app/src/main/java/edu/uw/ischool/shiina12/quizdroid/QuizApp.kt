@@ -15,7 +15,7 @@ class QuizApp : Application() {
     override fun onCreate() {
         super.onCreate()
         Log.d(TAG, "started QuizApp Application")
-        topicRepository = TopicRepositoryList(this)
+        topicRepository = TopicRepositoryList()
     }
 
     fun reset() {

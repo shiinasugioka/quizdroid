@@ -19,6 +19,10 @@ class TopicOverviewActivity : AppCompatActivity() {
         quizApp = application as QuizApp
         topicRepo = quizApp.topicRepository
 
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = "QuizDroid!"
+
         // find UI elements
         val quizWelcomeText = findViewById<TextView>(R.id.quiz_welcome_text)
         val quizDescription = findViewById<TextView>(R.id.quiz_description)

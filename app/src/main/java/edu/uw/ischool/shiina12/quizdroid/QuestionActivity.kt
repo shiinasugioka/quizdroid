@@ -24,6 +24,10 @@ class QuestionActivity : AppCompatActivity() {
         quizApp = application as QuizApp
         topicRepo = quizApp.topicRepository
 
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = "QuizDroid!"
+
         // retrieve all TextViews and Buttons
         val questionNumberTextView = findViewById<TextView>(R.id.questions_question_number)
         val questionDescriptionTextView =

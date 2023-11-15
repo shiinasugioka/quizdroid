@@ -31,7 +31,7 @@
         app:layout_constraintBottom_toTopOf="@+id/linearlayout_questions_radio_buttons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="Parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/questions_question_number"
