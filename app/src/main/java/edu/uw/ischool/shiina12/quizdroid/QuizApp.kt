@@ -1,6 +1,8 @@
 package edu.uw.ischool.shiina12.quizdroid
 
 import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 
 private const val TAG = "QuizApp"
@@ -15,7 +17,7 @@ class QuizApp : Application() {
     override fun onCreate() {
         super.onCreate()
         Log.d(TAG, "started QuizApp Application")
-        topicRepository = TopicRepositoryList()
+        topicRepository = TopicRepositoryList(this)
     }
 
     fun reset() {

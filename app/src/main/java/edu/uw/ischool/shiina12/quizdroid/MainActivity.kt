@@ -1,6 +1,8 @@
 package edu.uw.ischool.shiina12.quizdroid
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,14 +10,33 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toolbar
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
-import java.net.URL
-import java.util.concurrent.Executor
-import java.util.concurrent.Executors
 
 private const val TAG = "MainActivity"
+
+object AppPreferences {
+    private const val PREFERENCES_NAME = "AppPref"
+    private lateinit var sharedPreferences: SharedPreferences
+
+    fun initialize(context: Context) {
+        sharedPreferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
+    }
+
+    fun getURL(key: String, defaultURL: String): String? {
+        return sharedPreferences.getString(key, defaultURL)
+    }
+
+    fun putNewURL(key: String, newURL: String) {
+        sharedPreferences.edit().putString(key, newURL).apply()
+    }
+
+    fun getDownloadInterval(key: String, defaultDownloadInterval: Int): Int {
+        return sharedPreferences.getInt(key, defaultDownloadInterval)
+    }
+
+    fun putNewDownloadInterval(key: String, newDownloadInterval: Int) {
+        sharedPreferences.edit().putInt(key, newDownloadInterval).apply()
+    }
+}
 
 class MainActivity : AppCompatActivity() {
     private lateinit var quizApp: QuizApp
@@ -24,11 +45,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Log.d(TAG, "started Main Activity")
+        Log.d(TAG, "started MainActivity")
 
         quizApp = application as QuizApp
         topicRepo = quizApp.topicRepository
-        topicRepo.loadTopicsFromURL()
 
         val topButton = findViewById<Button>(R.id.QuizOption1)
         val topButtonSubtitle = findViewById<TextView>(R.id.QuizOption1Subtitle)
@@ -42,9 +62,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = "QuizDroid!"
 
         val listOfTopicNames = topicRepo.getTopicNames()
-        val currURL = topicRepo.getDataURL()
-        Log.i(TAG, "list of topic names: $listOfTopicNames")
-        Log.i(TAG, "curr URL: $currURL")
+        Log.i(TAG, "listOfTopicName: $listOfTopicNames")
         if (listOfTopicNames.size > 3) {
             throw Exception("You have too many topics. Found ${listOfTopicNames.size} not 3.")
         } else if (listOfTopicNames.size < 3) {
@@ -68,8 +86,10 @@ class MainActivity : AppCompatActivity() {
         bottomButtonSubtitle.text = bottomButtonSubtitleText
         bottomButton.text = thirdTopicName
 
+        Log.i(TAG, "button names: $firstTopicName, $secondTopicName, and $thirdTopicName")
+
         topButton.setOnClickListener {
-            goToOverview(firstTopicName)
+            goToOverview(listOfTopicNames[0])
         }
 
         middleButton.setOnClickListener {

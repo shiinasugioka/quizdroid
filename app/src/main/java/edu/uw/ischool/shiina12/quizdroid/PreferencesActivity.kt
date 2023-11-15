@@ -11,9 +11,6 @@ class PreferencesActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_preferences)
 
-        val quizApp: QuizApp = application as QuizApp
-        val topicRepo: TopicRepository = quizApp.topicRepository
-
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
         val userURLEditText = findViewById<EditText>(R.id.userInputURL)
         val userDownloadIntervalEditText = findViewById<EditText>(R.id.userInputDownloadInterval)
@@ -25,7 +22,10 @@ class PreferencesActivity: AppCompatActivity() {
 
         saveDataButton.setOnClickListener {
             val newURL = userURLEditText.text.toString()
-            topicRepo.setDataURL(newURL)
+            val newDownloadInterval = userDownloadIntervalEditText.text.toString().toInt()
+
+            AppPreferences.putNewURL("downloadURL", newURL)
+            AppPreferences.putNewDownloadInterval("downloadInterval", newDownloadInterval)
 
             val mainIntent = Intent(this, MainActivity::class.java)
             startActivity(mainIntent)
