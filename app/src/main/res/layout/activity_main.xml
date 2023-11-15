@@ -7,37 +7,40 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
-        style="@style/linearlayout_title"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/actionbar_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/app_title"
-            style="@style/app_title" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/actionbar_theme" />
 
-        <TextView
-            android:id="@+id/app_title_ep"
-            style="@style/app_title_ep" />
     </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         style="@style/linearlayout_text"
+        android:layout_marginTop="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        app:layout_constraintTop_toBottomOf="@+id/actionbar_linearLayout">
 
         <TextView style="@style/text_section" />
     </LinearLayout>
 
     <LinearLayout
         style="@style/linearlayout_buttons"
+        android:layout_marginTop="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

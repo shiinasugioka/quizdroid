@@ -4,8 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toolbar
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
@@ -32,20 +35,23 @@ class MainActivity : AppCompatActivity() {
         val middleButtonSubtitle = findViewById<TextView>(R.id.QuizOption2Subtitle)
         val bottomButton = findViewById<Button>(R.id.QuizOption3)
         val bottomButtonSubtitle = findViewById<TextView>(R.id.QuizOption3Subtitle)
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+
+        setSupportActionBar(toolbar)
+//        toolbar.title = "QuizDroid!"
+        supportActionBar?.title = "QuizDroid!"
 
         val listOfTopicNames = topicRepo.getTopicNames()
         Log.i(TAG, listOfTopicNames.toString())
         if (listOfTopicNames.size > 3) {
-            throw Exception("You have too many topics.")
+            throw Exception("You have too many topics. Found ${listOfTopicNames.size} not 3.")
+        } else if (listOfTopicNames.size < 3) {
+            throw Exception("You don't have enough topics. Found ${listOfTopicNames.size} not 3.")
         }
 
         val firstTopicName = listOfTopicNames[0]
         val secondTopicName = listOfTopicNames[1]
         val thirdTopicName = listOfTopicNames[2]
-
-//        val firstTopicName = "first"
-//        val secondTopicName = "second"
-//        val thirdTopicName = "third"
 
         val topButtonSubtitleText = topicRepo.getTopicByName(firstTopicName)?.shortDescription
         topButtonSubtitle.text = topButtonSubtitleText
@@ -72,6 +78,26 @@ class MainActivity : AppCompatActivity() {
             goToOverview(thirdTopicName)
         }
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.action_bar, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_settings -> {
+                openPreferences()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun openPreferences() {
+        Log.i(TAG, "OPEN PREFERENCES")
     }
 
     private fun goToOverview(selectedTopic: String) {

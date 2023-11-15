@@ -1,33 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--  Title Section  -->
-    <style name="linearlayout_title">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">120dp</item>
-        <item name="android:layout_marginBottom">636dp</item>
-        <item name="android:gravity">center</item>
-    </style>
 
-    <style name="app_title">
-        <item name="android:text">@string/app_title</item>
+    <style name="actionbar_theme" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:fontFamily">@font/lilita_one</item>
-        <item name="android:textColor">#F58B29</item>
-        <item name="android:textSize">32sp</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-
-    <style name="app_title_ep">
-        <item name="android:text">@string/app_title_ep</item>
-        <item name="android:fontFamily">@font/lilita_one</item>
-        <item name="android:textColor">#F58B29</item>
-        <item name="android:textSize">37sp</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:rotation">21</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:layout_marginLeft">3dp</item>
-        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:backgroundTint">#F58B29</item>
+        <item name="android:elevation">4dp</item>
     </style>
 
 </resources>
