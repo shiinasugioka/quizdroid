@@ -18,8 +18,9 @@ private const val TAG = "MainActivity"
 object AppPreferences {
     private const val PREFERENCES_NAME = "AppPref"
     private lateinit var sharedPreferences: SharedPreferences
-    private const val defaultURL =
-        "https://raw.githubusercontent.com/shiinasugioka/quizdroid/storage/app/data/quiz_data_formatted.json"
+    private const val defaultURL = "https://tednewardsandbox.site44.com/questions.json"
+
+    //        "https://raw.githubusercontent.com/shiinasugioka/quizdroid/storage/app/data/quiz_data_formatted.json"
     private const val defaultDownloadInterval = 60
 
     fun initialize(context: Context) {
@@ -88,7 +89,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUIElements() {
         val listOfTopicNames: List<String> = topicRepo.getTopicNames()
-        Log.i(TAG, "listOfTopicName: $listOfTopicNames")
 
         if (listOfTopicNames.size > 3) {
             throw Exception("You have too many topics. Found ${listOfTopicNames.size} not 3.")
@@ -113,19 +113,11 @@ class MainActivity : AppCompatActivity() {
         bottomButtonSubtitle.text = bottomButtonSubtitleText
         bottomButton.text = thirdTopicName
 
-        Log.i(TAG, "button names: $firstTopicName, $secondTopicName, and $thirdTopicName")
+        topButton.setOnClickListener { goToOverview(firstTopicName) }
 
-        topButton.setOnClickListener {
-            goToOverview(listOfTopicNames[0])
-        }
+        middleButton.setOnClickListener { goToOverview(secondTopicName) }
 
-        middleButton.setOnClickListener {
-            goToOverview(secondTopicName)
-        }
-
-        bottomButton.setOnClickListener {
-            goToOverview(thirdTopicName)
-        }
+        bottomButton.setOnClickListener { goToOverview(thirdTopicName) }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

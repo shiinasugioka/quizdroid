@@ -38,11 +38,6 @@ class TopicRepositoryList(context: Context) : TopicRepository {
     private var topicNames = mutableListOf<String>()
 
     private val downloadURL: String
-
-    // https://tednewardsandbox.site44.com/questions.json
- //    private val defaultURLString =
-//        "https://raw.githubusercontent.com/shiinasugioka/quizdroid/storage/app/data/quiz_data_formatted.json"
-
     private val downloadInterval: Int
 
     init {
@@ -53,13 +48,10 @@ class TopicRepositoryList(context: Context) : TopicRepository {
         downloadInterval =
             AppPreferences.getDownloadInterval("downloadInterval")
 
-        Log.i(TAG, "AppPref initialized: $downloadURL")
-
         loadTopicsFromURL(downloadURL)
     }
 
     override fun loadTopicsFromURL(url: String) {
-        Log.d(TAG, "started loadTopicsFromURL")
         val executor: Executor = Executors.newSingleThreadExecutor()
         executor.execute {
             val urlConnection = URL(url).openConnection() as HttpURLConnection
@@ -124,27 +116,18 @@ class TopicRepositoryList(context: Context) : TopicRepository {
 
             topics = updateList
             topicNames = updateNameList
-            Log.i(TAG, "final topicNames in topicRepo: $topicNames")
         }
     }
 
     override fun getAllTopics(): List<Topic> {
-        Log.d(TAG, "started getAllTopics")
         return topics
     }
 
     override fun getTopicNames(): List<String> {
-        Log.d(TAG, "started getTopicNames: $topicNames")
-        return if (topicNames != null) {
-            topicNames
-        } else {
-            loadTopicsFromURL(AppPreferences.getURL("downloadURL").toString())
-            topicNames
-        }
+        return topicNames
     }
 
     override fun getTopicByName(topicName: String): Topic? {
-        Log.d(TAG, "started getTopicByName")
         return topics.find { it.title == topicName }
     }
 }
