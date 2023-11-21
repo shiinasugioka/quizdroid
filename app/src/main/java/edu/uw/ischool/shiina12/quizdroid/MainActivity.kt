@@ -90,8 +90,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupDownloadService(downloadInterval: Int) {
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(this, FetchDownloadIntentService::class.java)
-        FetchDownloadIntentService.enqueueWork(this, intent)
 
         val pendingIntent =
             PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
