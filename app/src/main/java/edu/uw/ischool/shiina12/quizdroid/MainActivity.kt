@@ -1,10 +1,13 @@
 package edu.uw.ischool.shiina12.quizdroid
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -80,6 +83,26 @@ class MainActivity : AppCompatActivity() {
             topicRepo.loadTopicsFromURL(AppPreferences.getURL("downloadURL").toString())
             setUIElements()
         }
+
+        val downloadInterval = AppPreferences.getDownloadInterval("downloadInterval")
+        setupDownloadService(downloadInterval)
+    }
+
+    private fun setupDownloadService(downloadInterval: Int) {
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this, FetchDownloadIntentService::class.java)
+        FetchDownloadIntentService.enqueueWork(this, intent)
+
+        val pendingIntent =
+            PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val triggerTime = SystemClock.elapsedRealtime() + downloadInterval * 60 * 1000
+        alarmManager.setRepeating(
+            AlarmManager.ELAPSED_REALTIME_WAKEUP,
+            triggerTime,
+            (downloadInterval * 60 * 1000).toLong(),
+            pendingIntent
+        )
     }
 
     override fun onStart() {
@@ -114,9 +137,7 @@ class MainActivity : AppCompatActivity() {
         bottomButton.text = thirdTopicName
 
         topButton.setOnClickListener { goToOverview(firstTopicName) }
-
         middleButton.setOnClickListener { goToOverview(secondTopicName) }
-
         bottomButton.setOnClickListener { goToOverview(thirdTopicName) }
     }
 
