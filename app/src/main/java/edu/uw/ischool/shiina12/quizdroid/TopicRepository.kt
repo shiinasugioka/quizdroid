@@ -1,9 +1,15 @@
 package edu.uw.ischool.shiina12.quizdroid
 
+import android.app.PendingIntent.getActivity
 import android.content.Context
+import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.util.Log
+import android.widget.Toast
 import org.json.JSONArray
 import org.json.JSONException
+import java.io.FileOutputStream
 import java.io.InputStream
 import java.io.Serializable
 import java.net.HttpURLConnection
@@ -40,6 +46,8 @@ class TopicRepositoryList(context: Context) : TopicRepository {
     private val downloadURL: String
     private val downloadInterval: Int
 
+    private val context: Context = context
+
     init {
         Log.d(TAG, "started init TopicRepo")
         AppPreferences.initialize(context)
@@ -54,17 +62,67 @@ class TopicRepositoryList(context: Context) : TopicRepository {
     override fun loadTopicsFromURL(url: String) {
         val executor: Executor = Executors.newSingleThreadExecutor()
         executor.execute {
-            val urlConnection = URL(url).openConnection() as HttpURLConnection
-            val inputStream: InputStream = urlConnection.inputStream
-            val jsonString = inputStream.bufferedReader().use { it.readText() }
+            if (isOnline()) {
+                try {
+                    val urlConnection = URL(url).openConnection() as HttpURLConnection
+                    val inputStream: InputStream = urlConnection.inputStream
+                    val jsonString = inputStream.bufferedReader().use { it.readText() }
 
-            try {
-                topics.clear()
-                parseJSON(jsonString)
-            } catch (e: JSONException) {
-                Log.e(TAG, "JSON invalid: $e")
+                    saveToFile(jsonString)
+
+                    try {
+                        topics.clear()
+                        parseJSON(jsonString)
+                    } catch (e: JSONException) {
+                        Log.e(TAG, "JSON invalid: $e")
+                    }
+                } catch (e: Exception) {
+                    sendBroadcastDownloadFailure()
+                }
+
+            } else {
+                sendBroadcastNoInternet()
             }
         }
+    }
+
+    private fun isOnline(): Boolean {
+        var result = false
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        cm.run {
+            cm.getNetworkCapabilities(cm.activeNetwork)?.run {
+                result = when {
+                    hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                    hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                    hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+                    else -> false
+                }
+            }
+        }
+
+        return result
+    }
+
+    private fun saveToFile(jsonString: String) {
+        try {
+            val fileOutputStream: FileOutputStream = context.openFileOutput("questions.json", Context.MODE_PRIVATE)
+            fileOutputStream.write(jsonString.toByteArray())
+            fileOutputStream.close()
+        } catch (e: Exception) {
+            sendBroadcastDownloadFailure()
+        }
+    }
+
+    private fun sendBroadcastDownloadFailure() {
+        val intent = Intent("DOWNLOAD_FAILED")
+//        sendBroadcast(intent)
+        Toast.makeText(context, "Download Failed", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun sendBroadcastNoInternet() {
+        val intent = Intent("NO_INTERNET")
+//        sendBroadcast(intent)
+        Toast.makeText(context, "No Internet", Toast.LENGTH_SHORT).show()
     }
 
     private fun parseJSON(jsonString: String) {

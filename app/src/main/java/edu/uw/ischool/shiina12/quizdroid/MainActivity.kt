@@ -88,8 +88,13 @@ class MainActivity : AppCompatActivity() {
         setupDownloadService(downloadInterval)
     }
 
+    // threading intent
+    //
+
     private fun setupDownloadService(downloadInterval: Int) {
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+        // here
 
         val pendingIntent =
             PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)

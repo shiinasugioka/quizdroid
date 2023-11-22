@@ -39,19 +39,6 @@ class FetchDownloadIntentService : JobIntentService() {
             Log.i(TAG, "is not online")
             sendBroadcastNoInternet(this)
         }
-//        else {
-//            sendBroadcastNoInternet(this)
-//            try {
-//                val urlConnection = URL(url).openConnection() as HttpURLConnection
-//                val inputStream: InputStream = urlConnection.inputStream
-//                val jsonString = inputStream.bufferedReader().use { it.readText() }
-//
-//                saveToFile(jsonString)
-//
-//            } catch (e: Exception) {
-//                sendBroadcastDownloadFailure(this)
-//            }
-//        }
     }
 
     private fun isOnline(context: Context): Boolean {
@@ -84,13 +71,13 @@ class FetchDownloadIntentService : JobIntentService() {
     private fun sendBroadcastDownloadFailure(context: Context) {
         val intent = Intent("DOWNLOAD_FAILED")
         sendBroadcast(intent)
-        Toast.makeText(context, "Download Failed", Toast.LENGTH_SHORT)
+        Toast.makeText(context, "Download Failed", Toast.LENGTH_SHORT).show()
     }
 
     private fun sendBroadcastNoInternet(context: Context) {
         val intent = Intent("NO_INTERNET")
         sendBroadcast(intent)
-        Toast.makeText(context, "No Internet", Toast.LENGTH_SHORT)
+        Toast.makeText(context, "No Internet", Toast.LENGTH_SHORT).show()
     }
 
 }
